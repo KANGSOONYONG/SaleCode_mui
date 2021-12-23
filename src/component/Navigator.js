@@ -44,14 +44,17 @@ export default function Navigator(props) {
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
-        <ListItem sx={{ ...item, ...itemCategory, fontSize: 22, color: '#fff' }} as={Link} to='/'>
+        <ListItem sx={{ ...item, ...itemCategory, fontSize: 22, color: '#fff' }} component={Link} to='/'>
           세일코드보고가
         </ListItem>
-        <ListItem sx={{ ...item, ...itemCategory }} as={Link} to='/' >
+        <ListItem sx={{ ...item, ...itemCategory }} component={Link} to='/' >
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText>Home</ListItemText>
+        </ListItem>
+        <ListItem sx={{ ...item, ...itemCategory }} component={Link} to="/login" >
+          <ListItemText>로그인 / 회원가입</ListItemText>
         </ListItem>
         <Box sx={{ bgcolor: '#101F33' }}>
           <ListItem sx={{ py: 2, px: 3 }}>
@@ -74,7 +77,7 @@ export default function Navigator(props) {
             <ListItem disablePadding key={page.id}>
               <ListItemButton selected={active} sx={item}>
                 <ListItemIcon><PublicIcon /></ListItemIcon>
-                <ListItemText>{page.name}</ListItemText>
+                <ListItemText target="blank" href={page.link} >{page.name}</ListItemText>
               </ListItemButton>
             </ListItem>
           ))}

@@ -5,13 +5,15 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
-import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+// import Link from '@mui/material/Link';
+
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import Form from "./Form";
 
@@ -32,7 +34,7 @@ function Header(props) {
   console.log(youParams);
   const item = useFetch(`/api/items/youtuber/${youParams}`);
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -77,8 +79,9 @@ console.log(item);
                 variant="outlined"
                 color="inherit"
                 size="small"
+                onClick={handleClick}
               >
-                로그인 / 회원가입
+                수정 / 삭제
               </Button>
             </Grid>
             <Grid item>
@@ -87,7 +90,8 @@ console.log(item);
                 variant="outlined"
                 color="inherit"
                 size="small"
-                as={Link} to={`/createList/${youParams}`}
+                component={Link}
+                to={`/createList/${youParams}`}
               >
                 항목 추가
               </Button>
@@ -95,18 +99,6 @@ console.log(item);
           </Grid>
         </Toolbar>
       </AppBar>
-      {/* <AppBar component="div" position="static" elevation={0} sx={{ zIndex: 0 }}>
-        <Tabs value={0} textColor="inherit">
-          <Tab label="Users" />
-          <Tab label="Sign-in method" />
-          <Tab label="Templates" />
-          <Tab label="Usage" />
-        </Tabs>
-      </AppBar> */}
-      {/* <h1>
-          {youParams}
-          <button to={`/createList/${youParams}`}>항목 추가</button>
-      </h1> */}
       <List
         sx={{ bgcolor: 'background.paper', flex: 1, display: 'flex', flexDirection: 'column' }}
         component="nav"
@@ -114,16 +106,6 @@ console.log(item);
         subheader={
           <ListSubheader component="div" id="nested-list-subheader">
             코드 리스트 
-            <Button
-                sx={{ borderColor: lightColor }}
-                variant="outlined"
-                color="primary"
-                size="small"
-                onClick={handleClick}
-              >
-                수정 / 삭제
-              </Button>
-            {/* {open ? <ExpandLess /> : <ExpandMore />} */}
           </ListSubheader>
         }
       >

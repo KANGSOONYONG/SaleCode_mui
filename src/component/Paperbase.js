@@ -10,6 +10,10 @@ import Content from './Content';
 import Header from './Header';
 import Home from './Home';
 import CodeDetail from './CodeDetail';
+import LoginPage from './LoginPage';
+import Signup from './Signup';
+import CreateList from './CreateList';
+
 import {BrowserRouter, Route, Routes, Outlet} from 'react-router-dom'
 
 function Copyright() {
@@ -204,6 +208,9 @@ export default function Paperbase() {
             <Routes>
               <Route path="/" element={<Content />} />
               <Route path="/youtuber/:youtuber" element={<Home onDrawerToggle={handleDrawerToggle} />} />
+              <Route path="/createList/:youtuber" element={<CreateList />} />
+              <Route path="/login" element={<LoginPage onDrawerToggle={handleDrawerToggle} />} />
+              <Route path="/signup" element={<Signup onDrawerToggle={handleDrawerToggle} />}  />
             </Routes>
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
           <CodeDetail />
