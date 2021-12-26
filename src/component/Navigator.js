@@ -77,7 +77,7 @@ export default function Navigator(props) {
             <ListItem disablePadding key={page.id}>
               <ListItemButton selected={active} sx={item}>
                 <ListItemIcon><PublicIcon /></ListItemIcon>
-                <ListItemText target="blank" href={page.link} >{page.name}</ListItemText>
+                <ListItemText as={Link} to={page.link} target="blank">{page.name}</ListItemText>
               </ListItemButton>
             </ListItem>
           ))}
