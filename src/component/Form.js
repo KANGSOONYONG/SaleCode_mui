@@ -1,8 +1,10 @@
-import React, { Component }  from 'react';
+import * as React from 'react';
 import { useState } from "react";
 import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 export default function Form({ item }) {
     const [value, setValue] = useState();    
@@ -63,13 +65,13 @@ export default function Form({ item }) {
     return(
                 <List component="div" disablePadding>
                     <ListItemButton sx={{ pl: 4 }}>
-                        <button onClick={showInput}> {isOpen !== true ? "수정" : "숨기기" } </button>
-                        <button onClick={(e) => del(e)}>삭제</button>
+                        <Button variant="contained" onClick={showInput}> {isOpen !== true ? "수정" : "숨기기" } </Button>
+                        {isOpen !== true ? (<Button variant="contained"onClick={(e) => del(e)}>삭제</Button>) : null}
 
                         {isOpen === true && <div>
                             <form onSubmit={handleSubmit}>
-                                <input type="text" value={value || item.code } onChange={valueChange}/>
-                                <button onClick={(e) => put(e)}>코드 수정</button>
+                                <TextField id="filled-basic" label="수정할 코드" variant="filled" value={value || item.code } onChange={valueChange}/>
+                                <Button variant="contained" onClick={(e) => put(e)}>코드 수정</Button>
                             </form>              
                         </div>}
                     </ListItemButton>
