@@ -14,8 +14,9 @@ import PermMediaOutlinedIcon from '@mui/icons-material/PhotoSizeSelectActual';
 import PublicIcon from '@mui/icons-material/Public';
 import SettingsEthernetIcon from '@mui/icons-material/SettingsEthernet';
 import SettingsInputComponentIcon from '@mui/icons-material/SettingsInputComponent';
+import Link from '@mui/material/Link';
 
-import { Link } from "react-router-dom"
+import { Link as RouterLink } from "react-router-dom"
 import useFetch from "../hooks/useFetch";
 
 
@@ -44,16 +45,16 @@ export default function Navigator(props) {
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
-        <ListItem sx={{ ...item, ...itemCategory, fontSize: 22, color: '#fff' }} component={Link} to='/'>
+        <ListItem sx={{ ...item, ...itemCategory, fontSize: 22, color: '#fff' }} component={RouterLink} to='/'>
           세일코드보고가
         </ListItem>
-        <ListItem sx={{ ...item, ...itemCategory }} component={Link} to='/' >
+        <ListItem sx={{ ...item, ...itemCategory }} component={RouterLink} to='/' >
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText>Home</ListItemText>
         </ListItem>
-        <ListItem sx={{ ...item, ...itemCategory }} component={Link} to="/login" >
+        <ListItem sx={{ ...item, ...itemCategory }} component={RouterLink} to="/login" >
           <ListItemText>로그인 / 회원가입</ListItemText>
         </ListItem>
         <Box sx={{ bgcolor: '#101F33' }}>
@@ -64,7 +65,7 @@ export default function Navigator(props) {
             <ListItem disablePadding key={youtuber.id}>
               <ListItemButton selected={active} sx={item}>
                 <ListItemIcon><PeopleIcon /></ListItemIcon>
-                <ListItemText as={Link} to={`/youtuber/${youtuber.youtuber}`} >{youtuber.youtuber}</ListItemText>
+                <ListItemText as={RouterLink} to={`/youtuber/${youtuber.youtuber}`} >{youtuber.youtuber}</ListItemText>
               </ListItemButton>
             </ListItem>
           ))}
@@ -77,7 +78,7 @@ export default function Navigator(props) {
             <ListItem disablePadding key={page.id}>
               <ListItemButton selected={active} sx={item}>
                 <ListItemIcon><PublicIcon /></ListItemIcon>
-                <ListItemText as={Link} to={page.link} target="blank">{page.name}</ListItemText>
+                <ListItemText as={Link} href={page.link} target="blank">{page.name}</ListItemText>
               </ListItemButton>
             </ListItem>
           ))}
