@@ -20,6 +20,7 @@ import Form from "./Form";
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
+import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -111,19 +112,17 @@ console.log(item);
       >
       {item.map((item) => (
         <>
-          <ListItemButton key={item.id}>
+          <List key={item.id}>
               {item.code !== null && 
-              <Grid item xs={12} sm={2}>
-              <ListItemButton >
-                  <ListItemText primary={item.siteName} />
-              </ListItemButton>
-              </Grid>}
-              <Grid item xs={12} sm={10}>
-              <ListItemButton>
-                  <ListItemText primary={item.code} />
-              </ListItemButton>
-              </Grid>
-          </ListItemButton>
+              <ListItem>
+                <Grid item xs={12} sm={2}>
+                    <ListItemText primary={item.siteName} />
+                </Grid>
+                <Grid item xs={12} sm={10}>
+                    <ListItemText primary={item.code} />
+                </Grid>
+              </ListItem>}
+          </List>
           <Collapse in={open} timeout="auto" unmountOnExit >
             <Form item={item}/>
           </Collapse>
