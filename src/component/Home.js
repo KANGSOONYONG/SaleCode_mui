@@ -113,13 +113,16 @@ console.log(item);
         <>
           <ListItemButton key={item.id}>
               {item.code !== null && 
+              <Grid item xs={12} sm={2}>
               <ListItemButton >
                   <ListItemText primary={item.siteName} />
-              </ListItemButton>}
+              </ListItemButton>
+              </Grid>}
+              <Grid item xs={12} sm={10}>
               <ListItemButton>
                   <ListItemText primary={item.code} />
               </ListItemButton>
-
+              </Grid>
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit >
             <Form item={item}/>
