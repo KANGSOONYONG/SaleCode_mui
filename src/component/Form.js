@@ -2,9 +2,12 @@ import * as React from 'react';
 import { useState } from "react";
 import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
+import ListItem from '@mui/material/ListItem';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import Box from '@mui/material/Box';
+import { boxSizing } from '@mui/system';
 
 export default function Form({ item }) {
     const [value, setValue] = useState();    
@@ -63,19 +66,21 @@ export default function Form({ item }) {
         setIsOpen(!isOpen);
     }
     return(
-                <List component="div" disablePadding>
-                    <ListItemButton sx={{ pl: 4 }}>
-                        <Button variant="contained" onClick={showInput}> {isOpen !== true ? "수정" : "숨기기" } </Button>
-                        {isOpen !== true ? (<Button variant="contained"onClick={(e) => del(e)}>삭제</Button>) : null}
-
-                        {isOpen === true && <div>
-                            <form onSubmit={handleSubmit}>
-                                <TextField id="filled-basic" label="수정할 코드" variant="filled" value={value || item.code } onChange={valueChange}/>
-                                <Button variant="contained" onClick={(e) => put(e)}>코드 수정</Button>
-                            </form>              
-                        </div>}
-                    </ListItemButton>
-                </List>
+        <>
+            <List component="div">
+                <ListItem>
+                    <Button variant="contained" onClick={showInput}> {isOpen !== true ? "수정" : "숨기기" } </Button>
+                    {isOpen !== true ? (<Button variant="contained"onClick={(e) => del(e)}>삭제</Button>) : null}
+                    {isOpen === true && 
+                            <FormControl onSubmit={handleSubmit} sx={{flex: 1, display: 'flex', flexDirection: 'column'}}>
+                                <ListItem>
+                                    <TextField fullWidth id="fullWidth" multiline label="수정할 코드" variant="filled" value={value || item.code } onChange={valueChange}/>
+                                    <Button variant="contained" onClick={(e) => put(e)}>수정</Button>
+                                </ListItem>
+                            </FormControl>}
+                </ListItem>
+            </List>        
+        </>
     )
 
 

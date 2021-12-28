@@ -110,9 +110,10 @@ console.log(item);
           </ListSubheader>
         }
       >
+      </List>
       {item.map((item) => (
         <>
-          <List key={item.id}>
+          <List key={item.id} component="div">
               {item.code !== null && 
               <ListItem>
                 <Grid item xs={12} sm={2}>
@@ -128,7 +129,6 @@ console.log(item);
           </Collapse>
         </>
       ))}
-      </List>
     </React.Fragment>
   );
 }
