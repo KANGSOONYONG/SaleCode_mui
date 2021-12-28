@@ -208,7 +208,7 @@ export default function Paperbase() {
             <Routes>
               <Route path="/" element={<Content />} />
               <Route path="/youtuber/:youtuber" element={<Home onDrawerToggle={handleDrawerToggle} />} />
-              <Route path="/createList/:youtuber" element={<CreateList />} />
+              <Route path="/createList/:youtuber" element={<CreateList onDrawerToggle={handleDrawerToggle} />} />
               <Route path="/login" element={<LoginPage onDrawerToggle={handleDrawerToggle} />} />
               <Route path="/signup" element={<Signup onDrawerToggle={handleDrawerToggle} />}  />
             </Routes>
