@@ -118,28 +118,6 @@ export default function CreateYoutuber(props) {
                     }}
                     >
                     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                    {/* <form >
-                        <div>
-                            <label>채널명</label>
-                            <span>{youParams}</span>
-                        </div>
-                        <div>
-                            <label>사이트</label>
-                            <select ref={siteRef}>
-                                {siteNames.map((siteName) => (
-                                    <option key={siteName.SiteId} value={siteName.name}>
-                                        {siteName.name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div>
-                            <label>할인 코드</label>
-                            <input type="text" placeholder="할인 코드" ref={codeRef}/>
-                        </div>
-
-                    </form> */}
-
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
@@ -189,7 +167,7 @@ export default function CreateYoutuber(props) {
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
                         >
-                        저장
+                        추가하기
                         </Button>
                         </Box>
                         <Grid container justifyContent="flex-end">
