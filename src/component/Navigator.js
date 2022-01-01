@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Box from '@mui/material/Box';
@@ -9,11 +8,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import PeopleIcon from '@mui/icons-material/People';
-import DnsRoundedIcon from '@mui/icons-material/DnsRounded';
-import PermMediaOutlinedIcon from '@mui/icons-material/PhotoSizeSelectActual';
 import PublicIcon from '@mui/icons-material/Public';
-import SettingsEthernetIcon from '@mui/icons-material/SettingsEthernet';
-import SettingsInputComponentIcon from '@mui/icons-material/SettingsInputComponent';
 import Link from '@mui/material/Link';
 
 import { Link as RouterLink } from "react-router-dom"
@@ -35,6 +30,22 @@ const itemCategory = {
   px: 3,
 };
 
+const usertoken = localStorage.getItem('userToken');
+console.log(usertoken);
+
+const logout = (e) => {
+    localStorage.removeItem('userToken')
+    fetch(`/api/users/logout`, {
+        method: 'GET'
+      })
+    .then(res => {
+        if (res.ok) {
+            console.log("로그아웃 완료")
+            window.location.reload();
+        }
+    })
+    .catch((err) => console.log(err));
+}
 
 export default function Navigator(props) {
   const { ...other } = props;
@@ -46,7 +57,7 @@ export default function Navigator(props) {
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
         <ListItem sx={{ ...item, ...itemCategory, fontSize: 22, color: '#fff' }} component={RouterLink} to='/'>
-          세일코드보고가
+          헬스유튜버할인코드
         </ListItem>
         <ListItem sx={{ ...item, ...itemCategory }} component={RouterLink} to='/' >
           <ListItemIcon>
@@ -54,9 +65,14 @@ export default function Navigator(props) {
           </ListItemIcon>
           <ListItemText>Home</ListItemText>
         </ListItem>
+        {usertoken === null ? 
         <ListItem sx={{ ...item, ...itemCategory }} component={RouterLink} to="/login" >
           <ListItemText>로그인 / 회원가입</ListItemText>
-        </ListItem>
+        </ListItem> :
+        <ListItem sx={{ ...item, ...itemCategory }} onClick={(e)=> logout(e)} >
+          <ListItemText>로그아웃</ListItemText>
+        </ListItem> 
+        }
         <Box sx={{ bgcolor: '#101F33' }}>
           <ListItem sx={{ py: 2, px: 3 }}>
             <ListItemText sx={{ color: '#fff' }}>유튜버</ListItemText>
@@ -74,9 +90,9 @@ export default function Navigator(props) {
           <ListItem sx={{ py: 2, px: 3 }}>
             <ListItemText sx={{ color: '#fff' }}>사이트 바로가기</ListItemText>
           </ListItem>
-          {siteName.map((page, active) => (
+          {siteName.map((page) => (
             <ListItem disablePadding key={page.id}>
-              <ListItemButton selected={active} sx={item}>
+              <ListItemButton sx={item}>
                 <ListItemIcon><PublicIcon /></ListItemIcon>
                 <ListItemText as={Link} href={page.link} target="blank">{page.name}</ListItemText>
               </ListItemButton>
