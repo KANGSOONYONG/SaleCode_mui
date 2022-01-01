@@ -12,13 +12,22 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { useRef } from "react";
 import { Link } from "react-router-dom"
 
 
 export default function LoginPage(props) {
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
 
+    const emailChange = (e) => {
+        setEmail(e.target.value)
+    }
+    
+    const passwordChange = (e) => {
+        setPassword(e.target.value)
+    }
     const theme = createTheme();
 
     const navigate = useNavigate();
@@ -35,8 +44,8 @@ export default function LoginPage(props) {
                 'Content-Type' : 'application/json'
             },
             body: JSON.stringify({
-                email: emailRef.current.value,
-                password: passwordRef.current.value
+                email: email,
+                password: password
             }),
         })
         .then((res) => res.json())
@@ -52,9 +61,6 @@ export default function LoginPage(props) {
         })
         .catch((err) => console.log(err));
     }
-
-    const emailRef = useRef(null);
-    const passwordRef = useRef(null);
 
     const { onDrawerToggle } = props;
 
@@ -98,7 +104,7 @@ export default function LoginPage(props) {
                             name="email"
                             autoComplete="email"
                             autoFocus
-                            ref={emailRef}
+                            onChange={emailChange}
                             />
                             <TextField
                             margin="normal"
@@ -109,7 +115,7 @@ export default function LoginPage(props) {
                             type="password"
                             id="password"
                             autoComplete="current-password"
-                            ref={passwordRef}
+                            onChange={passwordChange}
                             />
                             <Button
                             type="submit"
