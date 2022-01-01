@@ -11,7 +11,7 @@ export default function NestedList() {
   const reples = useFetch('/api/reples');
 
   const [reple, setReple] = useState();
-
+  const repleNumber = reples.length + 1
   const repleChange = (e) => {
     setReple(e.target.value)
 }
@@ -24,7 +24,8 @@ export default function NestedList() {
                 'Content-Type' : 'application/json'
             },
             body : JSON.stringify({
-                reple : reple
+                reple : reple,
+                number : repleNumber
             })
         })
         .then((res) => res.json())
@@ -46,7 +47,7 @@ export default function NestedList() {
         label="아무말이나 남기기" 
         value={reple} onChange={repleChange}
         />
-        <Button type="submit" variant="contained">보내기</Button>
+        <Button type="submit" variant="contained">전송</Button>
       </ListItem>
     </FormControl>
     {reples.map((reple) => (
