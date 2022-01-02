@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import ListItem from '@mui/material/ListItem';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
+import ListItemText from '@mui/material/ListItemText';
 
 export default function NestedList() {
   const reples = useFetch('/api/reples');
@@ -54,9 +55,9 @@ export default function NestedList() {
       </ListItem>
     </FormControl>
     {limitReple.map((reple) => (
-      <div>
-        {reple.reple}
-      </div>
+      <ListItem >
+         <ListItemText primary={reple.reple} />
+      </ListItem >
     ))}
   </>
   );
