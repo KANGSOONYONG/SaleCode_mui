@@ -11,7 +11,10 @@ export default function NestedList() {
   const reples = useFetch('/api/reples');
 
   const [reple, setReple] = useState();
-  const repleNumber = reples.length + 1
+  const repleNumber = reples.length + 1;
+
+  const limitReple = reples.slice(0, 6);
+
   const repleChange = (e) => {
     setReple(e.target.value)
 }
@@ -50,7 +53,7 @@ export default function NestedList() {
         <Button type="submit" variant="contained">전송</Button>
       </ListItem>
     </FormControl>
-    {reples.map((reple) => (
+    {limitReple.map((reple) => (
       <div>
         {reple.reple}
       </div>
