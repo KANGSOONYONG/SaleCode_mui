@@ -1,17 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-// import Link from '@mui/material/Link';
 
+import { useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
@@ -19,11 +16,8 @@ import Form from "./Form";
 
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
@@ -32,16 +26,17 @@ function Header(props) {
   const { onDrawerToggle } = props;
 
   const youParams = useParams().youtuber;
-  console.log(youParams);
-  const item = useFetch(`/api/items/youtuber/${youParams}`);
 
-  const [open, setOpen] = React.useState(false);
+  const item = useFetch(`/api/items/youtuber/${youParams}`);
+  const isAdmin = useFetch(`/api/users/isadmin`)[0];
+  console.log(isAdmin);
+
+  const [open, setOpen] = useState(false);
 
   const handleClick = () => {
     setOpen(!open);
   };
 
-console.log(item);
   return (
     <React.Fragment>
       <AppBar color="primary" position="sticky" elevation={0}>
@@ -74,7 +69,9 @@ console.log(item);
                 {youParams}
               </Typography>
             </Grid>
-            <Grid item>
+            {isAdmin === 1 ? (
+              <>
+              <Grid item>
               <Button
                 sx={{ borderColor: lightColor }}
                 variant="outlined"
@@ -97,12 +94,15 @@ console.log(item);
                 항목 추가
               </Button>
             </Grid>
+              </>
+            ) : null }
+            
           </Grid>
         </Toolbar>
       </AppBar>
       <List
         sx={{ bgcolor: 'background.paper', flex: 1, display: 'flex', flexDirection: 'column' }}
-        component="nav"
+        component="div"
         aria-labelledby="nested-list-subheader"
         subheader={
           <ListSubheader component="div" id="nested-list-subheader">
@@ -110,7 +110,6 @@ console.log(item);
           </ListSubheader>
         }
       >
-      </List>
       {item.map((item) => (
         <>
           <List key={item.id} component="div">
@@ -129,6 +128,7 @@ console.log(item);
           </Collapse>
         </>
       ))}
+      </List>
     </React.Fragment>
   );
 }
