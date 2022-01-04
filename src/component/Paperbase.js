@@ -6,10 +6,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Navigator from './Navigator';
-import Content from './Content';
-import Header from './Header';
+import Mainpage from './Mainpage';
 import Home from './Home';
-import CodeDetail from './CodeDetail';
+import Reple from './Reple';
 import LoginPage from './LoginPage';
 import Signup from './Signup';
 import CreateList from './CreateList';
@@ -206,14 +205,14 @@ export default function Paperbase() {
         </Box>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
             <Routes>
-              <Route path="/" element={<Content />} />
+              <Route path="/" element={<Mainpage onDrawerToggle={handleDrawerToggle} />} />
               <Route path="/youtuber/:youtuber" element={<Home onDrawerToggle={handleDrawerToggle} />} />
               <Route path="/createList/:youtuber" element={<CreateList onDrawerToggle={handleDrawerToggle} />} />
               <Route path="/login" element={<LoginPage onDrawerToggle={handleDrawerToggle} />} />
               <Route path="/signup" element={<Signup onDrawerToggle={handleDrawerToggle} />}  />
             </Routes>
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
-          <CodeDetail />
+          <Reple />
           </Box>
           <Box component="footer" sx={{ p: 2, bgcolor: '#eaeff1' }}>
             <Copyright />

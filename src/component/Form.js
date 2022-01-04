@@ -1,13 +1,10 @@
 import * as React from 'react';
 import { useState } from "react";
-import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
-import Box from '@mui/material/Box';
-import { boxSizing } from '@mui/system';
 
 export default function Form({ item }) {
     const [value, setValue] = useState();    
@@ -33,7 +30,6 @@ export default function Form({ item }) {
                     'Content-Type' : 'application/json'
                 },
                 body : JSON.stringify({
-                    // ...item,
                     code : value
                 })
             })

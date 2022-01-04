@@ -51,7 +51,7 @@ export default function LoginPage(props) {
           setNameMessage('2글자 이상 입력해주세요.');
           setIsName(false);
         } else {
-          setNameMessage('사용 가능한 이름입니다');
+          setNameMessage('사용 가능한 닉네임입니다');
           setIsName(true);
         }
       }
@@ -68,7 +68,7 @@ export default function LoginPage(props) {
             setIsSameEmail(false);
             setIsEmailType(false);
         } else {
-            setEmailMessage('올바른 이메일 형식입니다.')
+            setEmailMessage('사용 가능한 이메일입니다.')
             setIsEmail(true);
             setIsSameEmail(false);
             setIsEmailType(true);

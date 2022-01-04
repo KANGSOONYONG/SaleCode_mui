@@ -31,7 +31,6 @@ const itemCategory = {
 };
 
 const usertoken = localStorage.getItem('userToken');
-console.log(usertoken);
 
 const logout = (e) => {
     localStorage.removeItem('userToken')
@@ -77,9 +76,9 @@ export default function Navigator(props) {
           <ListItem sx={{ py: 2, px: 3 }}>
             <ListItemText sx={{ color: '#fff' }}>유튜버</ListItemText>
           </ListItem>
-          {youtuber.map((youtuber, active) => (
+          {youtuber.map((youtuber) => (
             <ListItem disablePadding key={youtuber.id}>
-              <ListItemButton selected={active} sx={item}>
+              <ListItemButton sx={item}>
                 <ListItemIcon><PeopleIcon /></ListItemIcon>
                 <ListItemText as={RouterLink} to={`/youtuber/${youtuber.youtuber}`} >{youtuber.youtuber}</ListItemText>
               </ListItemButton>
