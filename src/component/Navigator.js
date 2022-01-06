@@ -10,10 +10,12 @@ import HomeIcon from '@mui/icons-material/Home';
 import PeopleIcon from '@mui/icons-material/People';
 import PublicIcon from '@mui/icons-material/Public';
 import Link from '@mui/material/Link';
+import { grey } from '@mui/material/colors';
 
 import { Link as RouterLink } from "react-router-dom"
 import useFetch from "../hooks/useFetch";
 
+const greycolor = grey[500]; // #f44336
 
 const item = {
   py: '2px',
@@ -56,7 +58,7 @@ export default function Navigator(props) {
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
         <ListItem sx={{ ...item, ...itemCategory, fontSize: 22, color: '#fff' }} component={RouterLink} to='/'>
-          헬스유튜버할인코드
+          근성장코드닷컴
         </ListItem>
         <ListItem sx={{ ...item, ...itemCategory }} component={RouterLink} to='/' >
           <ListItemIcon>
@@ -80,7 +82,7 @@ export default function Navigator(props) {
             <ListItem disablePadding key={youtuber.id}>
               <ListItemButton sx={item}>
                 <ListItemIcon><PeopleIcon /></ListItemIcon>
-                <ListItemText as={RouterLink} to={`/youtuber/${youtuber.youtuber}`} >{youtuber.youtuber}</ListItemText>
+                <ListItemText as={RouterLink} to={`/youtuber/${youtuber.youtuber}`} sx={{  color: 'inherit', fontWeight: 'bold', textDecoration: 'none'}}>{youtuber.youtuber}</ListItemText>
               </ListItemButton>
             </ListItem>
           ))}
@@ -93,7 +95,7 @@ export default function Navigator(props) {
             <ListItem disablePadding key={page.id}>
               <ListItemButton sx={item}>
                 <ListItemIcon><PublicIcon /></ListItemIcon>
-                <ListItemText as={Link} href={page.link} target="blank">{page.name}</ListItemText>
+                <ListItemText as={Link} href={page.link} target="blank" underline="none">{page.name}</ListItemText>
               </ListItemButton>
             </ListItem>
           ))}
