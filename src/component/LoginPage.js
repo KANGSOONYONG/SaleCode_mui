@@ -52,6 +52,7 @@ export default function LoginPage(props) {
         .then((res) => { 
           if (res.loginSuccess) {
             localStorage.setItem('userToken', `${res.userToken}`);
+            localStorage.setItem('userRole', `${res.userRole}`)
             console.log("로그인 되었습니다.");
             navigate('/');
             window.location.reload();
