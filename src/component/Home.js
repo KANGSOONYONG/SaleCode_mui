@@ -28,8 +28,8 @@ function Header(props) {
   const youParams = useParams().youtuber;
 
   const item = useFetch(`/api/items/youtuber/${youParams}`);
-  const isAdmin = useFetch(`/api/users/isadmin`)[0];
-  console.log(isAdmin);
+  const userRole = localStorage.getItem('userRole');
+  console.log(userRole);
 
   const [open, setOpen] = useState(false);
 
@@ -69,31 +69,43 @@ function Header(props) {
                 {youParams}
               </Typography>
             </Grid>
-            {isAdmin === 1 ? (
+            {userRole === "1" ? (
               <>
               <Grid item>
-              <Button
-                sx={{ borderColor: lightColor }}
-                variant="outlined"
-                color="inherit"
-                size="small"
-                onClick={handleClick}
-              >
-                수정 / 삭제
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button
-                sx={{ borderColor: lightColor }}
-                variant="outlined"
-                color="inherit"
-                size="small"
-                component={Link}
-                to={`/createList/${youParams}`}
-              >
-                항목 추가
-              </Button>
-            </Grid>
+                <Button
+                  sx={{ borderColor: lightColor }}
+                  variant="outlined"
+                  color="inherit"
+                  size="small"
+                  onClick={handleClick}
+                >
+                  수정 / 삭제
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  sx={{ borderColor: lightColor }}
+                  variant="outlined"
+                  color="inherit"
+                  size="small"
+                  component={Link}
+                  to={`/createList/${youParams}`}
+                >
+                  항목 추가
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  sx={{ borderColor: lightColor }}
+                  variant="outlined"
+                  color="inherit"
+                  size="small"
+                  component={Link}
+                  to={`/createyoutuber`}
+                >
+                  유튜버 추가
+                </Button>
+              </Grid>
               </>
             ) : null }
             
