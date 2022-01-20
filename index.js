@@ -95,7 +95,7 @@ app.post('/api/users/login', (req, res) => {
       // 쿠키에 토큰을 저장하기 위해서는 cookie-parser를 다운 받아야 한다.
       res.cookie("x_auth", user.token)
       .status(200)
-      .json({ loginSuccess: true, userId: user._id, userToken: user.token})
+      .json({ loginSuccess: true, userId: user._id, userToken: user.token, userRole: user.role })
     })
     })
   })
@@ -132,14 +132,14 @@ app.get('/api/users', async (req, res) => {
   }
 })
 
-app.get('/api/users/isadmin', async (req, res) => {
-  try{
-    const isAdmin = await User.find({}, { "_id": false, "role" : true});
-    res.json(isAdmin);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-})
+// app.get('/api/users/isadmin', async (req, res) => {
+//   try{
+//     const isAdmin = await User.find({}, { "_id": false, "role" : true});
+//     res.json(isAdmin);
+//   } catch (err) {
+//     res.status(400).json({ message: err.message });
+//   }
+// })
 
 app.get('/api/youtubers', async (req, res) => {
   try{
