@@ -14,13 +14,14 @@ import Signup from './Signup';
 import CreateList from './CreateList';
 
 import {BrowserRouter, Route, Routes, Outlet} from 'react-router-dom'
+import CreateYoutuber from './CreateYoutuber';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://github.com/KANGSOONYONG">
-        Github Link
+        제작자 Github
       </Link>{' '}
       {new Date().getFullYear()}.
     </Typography>
@@ -210,6 +211,7 @@ export default function Paperbase() {
               <Route path="/createList/:youtuber" element={<CreateList onDrawerToggle={handleDrawerToggle} />} />
               <Route path="/login" element={<LoginPage onDrawerToggle={handleDrawerToggle} />} />
               <Route path="/signup" element={<Signup onDrawerToggle={handleDrawerToggle} />}  />
+              <Route path="/createyoutuber" element={<CreateYoutuber onDrawerToggle={handleDrawerToggle} />}  />
             </Routes>
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
           <Reple />
